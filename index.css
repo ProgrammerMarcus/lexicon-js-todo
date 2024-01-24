@@ -1,0 +1,18 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-image: url("bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    /** background: center / cover no-repeat url("bg.jpg"); **/
+}
+
+.todo {
+    background-color: rgba(44, 44, 77, 0.7);
+}
+
+.actions {
+    display: grid;
+    gap: 0;
+    grid-auto-flow: column;
+}
