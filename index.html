@@ -11,13 +11,15 @@
     <section class="container">
         <h1>Todo List</h1>
         <form class="form">
-            <input type="text" placeholder="Add todo..." name="todo" class="form-todo">
+            <input type="text" placeholder="Enter name (optional)" name="name" class="form-name">
+            <input type="text" placeholder="Enter task (required)" name="todo" class="form-todo">
             <button type="button" class="form-btn">Add</button>
         </form>
         <div class="list">
             <template id="template-todo">
                 <article class="todo">
-                    <p class="todo-text">Placeholder</p>
+                    <span class="todo-name"></span>
+                    <input type="text" class="todo-text"></b>
                     <div class="actions">
                         <button class="todo-up"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJRJREFUSEvtlaEOgCAURY/fadSqUaMaNWrV6H8qG27MDe8L0qBQ4BzefW+jIPEqEvPJAplwjuj3iEZPfPZfBQ46eOJ07yaJtckh/Hm1SWIRhPDS009rJUoQwmvg8OAK2C2SL0EIb4Ht1dEGWJXEIuiBJTIuHTAD0X6oiNzUuMtfy1UanSglkHOuDmSBSij/aDKh9BFdrAEWGRrmFMAAAAAASUVORK5CYII="/></button>
                         <button class="todo-down"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJVJREFUSEvtlEESgCAMA8N39D8+0v/oezQHHEVJyoGLgxdGps3StJDQ+Uud9TEA1uH/WzQB2I0PMkZZxMT1BCwCYmNqgJw4A9gqkEiMvAdKICROa90UfQkxj9ap6q62OQADSwj3QuKRCvJJ7hDu1fryGrhIBSWE/2qyHpAWQLaLq7sbTT2w740KaK2gGTYA1rJhkbXoAOkKIRnVLOSLAAAAAElFTkSuQmCC"/></button>
