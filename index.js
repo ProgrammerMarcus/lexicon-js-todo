@@ -1,5 +1,5 @@
-function addTodo(todo) {
-    let date = new Date()
+function addTodo(todo, name) {
+    let date = new Date();
     let clone = document.querySelector("#template-todo").content.cloneNode(true);
     let child = clone.firstElementChild;
     child.addEventListener("click", (e) => {
@@ -29,12 +29,14 @@ function addTodo(todo) {
         }
     });
     clone.querySelector(".todo-text").value = todo;
-    let name = document.querySelector(".form-name").value
-    let formatted = `${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`
-    if (name) {
-        formatted += ` - ${name}`
+    if (!name) {
+        name = document.querySelector(".form-name").value;
     }
-    clone.querySelector(".todo-name").innerText = formatted
+    let formatted = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+    if (name) {
+        formatted += ` - ${name}`;
+    }
+    clone.querySelector(".todo-name").innerText = formatted;
     document.querySelector(".list").appendChild(clone);
 }
 
@@ -51,3 +53,35 @@ document.querySelector(".form > .form-btn").addEventListener("click", () => {
         addTodo(input.value);
     }
 });
+
+/**
+ * Since date is first, simply sorting  works.
+ */
+document.querySelector(".sorting-date").addEventListener("click", () => {
+    let children = Array.from(document.querySelectorAll(".list > .todo"));
+    children = children.sort((a, b) =>
+        a
+            .querySelector(".todo-name")
+            .innerText.localeCompare(b.querySelector(".todo-name").innerText)
+    );
+    document.querySelector(".list").replaceChildren(...children);
+});
+
+/**
+ * For some reason, this reverses the list every time its sorted.
+ * But it still sorts?
+ */
+document.querySelector(".sorting-name").addEventListener("click", () => {
+    let children = Array.from(document.querySelectorAll(".list > .todo"));
+    children = children.sort((a, b) =>
+        a
+            .querySelector(".todo-name")
+            .innerText.replace(/.*-/m, "")
+            .localeCompare(b.querySelector(".todo-name").innerText)
+    );
+    document.querySelector(".list").replaceChildren(...children);
+});
+
+addTodo("Go to dance party!", "Bob");
+addTodo("Hit the showers!", "Gandeldore");
+addTodo("LIMBO TIME!", "Dancemaster");
