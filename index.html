@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+    <template id="template-todo">
+        <article class="todo">
+            <span class="todo-name"></span>
+            <input type="text" class="todo-text"></b>
+            <div class="actions">
+                <button class="todo-up"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJRJREFUSEvtlaEOgCAURY/fadSqUaMaNWrV6H8qG27MDe8L0qBQ4BzefW+jIPEqEvPJAplwjuj3iEZPfPZfBQ46eOJ07yaJtckh/Hm1SWIRhPDS009rJUoQwmvg8OAK2C2SL0EIb4Ht1dEGWJXEIuiBJTIuHTAD0X6oiNzUuMtfy1UanSglkHOuDmSBSij/aDKh9BFdrAEWGRrmFMAAAAAASUVORK5CYII="/></button>
+                <button class="todo-down"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJVJREFUSEvtlEESgCAMA8N39D8+0v/oezQHHEVJyoGLgxdGps3StJDQ+Uud9TEA1uH/WzQB2I0PMkZZxMT1BCwCYmNqgJw4A9gqkEiMvAdKICROa90UfQkxj9ap6q62OQADSwj3QuKRCvJJ7hDu1fryGrhIBSWE/2qyHpAWQLaLq7sbTT2w740KaK2gGTYA1rJhkbXoAOkKIRnVLOSLAAAAAElFTkSuQmCC"/></button>
+                <button class="todo-done"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAOJJREFUSEvtky0OAjEQRt9eBw7CCfiX3A4EggSBQJAgEAgMAoFAYBAIBAZBSmZI03TbLrsrSLbJqm7fy8w3k1HzyWrm0wiiHf6rFk2BmXzfyqqqwMC7Qu3ZkioECn8BBj63gykrUPgT6AMLN/UyAoU/gAGw9I2UTzABOlJu3hgq/C7wVd6PrqAFmMdtCcr01D0Kvwl8HVoGXwUhicKvwBDYxDYtLwOfROEXYARsY3BzHwrZlZg5Pwt8lwKPCcy9LTkJfJ8KTxHYkjFwKAJPFajkWBReRPAL+/OmzCYnSRtBtE1vu+MqGWavYNgAAAAASUVORK5CYII="/></button>
+                <button class="todo-remove"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJNJREFUSEvtlNsNgCAMRY/zuITu4EAO5A66hPOoJGoi2LQE8ZHIH6Hc096mLch8isz6vAYwCZWqCZ4FSGJWNw+ajwBcplsVqgVrWWK8JHA7wAdq971f1go0wWSLfkAwQ7GW/D0IJluzMHoOtEWX3IPLAT1Qaare+wDU/h9pVbRAA5RGyAh0S6z7dzjWdWzkhGHfB8wADjQZ1fL9swAAAABJRU5ErkJggg=="/></button>
+            </div>
+        </article>
+    </template>
     <section class="container">
         <h1>Todo List</h1>
         <form class="form">
@@ -22,18 +34,6 @@
             <button class="sorting-name">NAME</button>
         </div>
         <div class="list">
-            <template id="template-todo">
-                <article class="todo">
-                    <span class="todo-name"></span>
-                    <input type="text" class="todo-text"></b>
-                    <div class="actions">
-                        <button class="todo-up"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJRJREFUSEvtlaEOgCAURY/fadSqUaMaNWrV6H8qG27MDe8L0qBQ4BzefW+jIPEqEvPJAplwjuj3iEZPfPZfBQ46eOJ07yaJtckh/Hm1SWIRhPDS009rJUoQwmvg8OAK2C2SL0EIb4Ht1dEGWJXEIuiBJTIuHTAD0X6oiNzUuMtfy1UanSglkHOuDmSBSij/aDKh9BFdrAEWGRrmFMAAAAAASUVORK5CYII="/></button>
-                        <button class="todo-down"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJVJREFUSEvtlEESgCAMA8N39D8+0v/oezQHHEVJyoGLgxdGps3StJDQ+Uud9TEA1uH/WzQB2I0PMkZZxMT1BCwCYmNqgJw4A9gqkEiMvAdKICROa90UfQkxj9ap6q62OQADSwj3QuKRCvJJ7hDu1fryGrhIBSWE/2qyHpAWQLaLq7sbTT2w740KaK2gGTYA1rJhkbXoAOkKIRnVLOSLAAAAAElFTkSuQmCC"/></button>
-                        <button class="todo-done"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAOJJREFUSEvtky0OAjEQRt9eBw7CCfiX3A4EggSBQJAgEAgMAoFAYBAIBAZBSmZI03TbLrsrSLbJqm7fy8w3k1HzyWrm0wiiHf6rFk2BmXzfyqqqwMC7Qu3ZkioECn8BBj63gykrUPgT6AMLN/UyAoU/gAGw9I2UTzABOlJu3hgq/C7wVd6PrqAFmMdtCcr01D0Kvwl8HVoGXwUhicKvwBDYxDYtLwOfROEXYARsY3BzHwrZlZg5Pwt8lwKPCcy9LTkJfJ8KTxHYkjFwKAJPFajkWBReRPAL+/OmzCYnSRtBtE1vu+MqGWavYNgAAAAASUVORK5CYII="/></button>
-                        <button class="todo-remove"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAJNJREFUSEvtlNsNgCAMRY/zuITu4EAO5A66hPOoJGoi2LQE8ZHIH6Hc096mLch8isz6vAYwCZWqCZ4FSGJWNw+ajwBcplsVqgVrWWK8JHA7wAdq971f1go0wWSLfkAwQ7GW/D0IJluzMHoOtEWX3IPLAT1Qaare+wDU/h9pVbRAA5RGyAh0S6z7dzjWdWzkhGHfB8wADjQZ1fL9swAAAABJRU5ErkJggg=="/></button>
-                    </div>
-                </article>
-            </template>
         </div>
     </div>
 </body>

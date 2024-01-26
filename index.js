@@ -55,7 +55,7 @@ document.querySelector(".form > .form-btn").addEventListener("click", () => {
 });
 
 /**
- * Since date is first, simply sorting  works.
+ * Since date is first, simply sorting works.
  */
 document.querySelector(".sorting-date").addEventListener("click", () => {
     let children = Array.from(document.querySelectorAll(".list > .todo"));
@@ -68,20 +68,22 @@ document.querySelector(".sorting-date").addEventListener("click", () => {
 });
 
 /**
- * For some reason, this reverses the list every time its sorted.
- * But it still sorts?
+ * For some reason, this reverses the sorting order
+ * every time it's sorted?
  */
 document.querySelector(".sorting-name").addEventListener("click", () => {
     let children = Array.from(document.querySelectorAll(".list > .todo"));
     children = children.sort((a, b) =>
         a
             .querySelector(".todo-name")
-            .innerText.replace(/.*-/m, "")
-            .localeCompare(b.querySelector(".todo-name").innerText)
+            .innerText.replace(/.*-/m, "") // the culprit
+            .localeCompare(b.querySelector(".todo-name").innerText.replace(/.*-/m, ""))
     );
     document.querySelector(".list").replaceChildren(...children);
 });
 
 addTodo("Go to dance party!", "Bob");
-addTodo("Hit the showers!", "Gandeldore");
-addTodo("LIMBO TIME!", "Dancemaster");
+addTodo("Wake up.", "");
+addTodo("Beep boop", "Futuristic Robot");
+addTodo(":D", "A cat");
+addTodo("Invade Earth", "Alien Invader");
