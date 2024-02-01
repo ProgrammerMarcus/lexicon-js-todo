@@ -1,4 +1,4 @@
-function addTodo(todo, name) {
+function addTodo(todo, name, time = "", done = false) {
     let date = new Date();
     let clone = document.querySelector("#template-todo").content.cloneNode(true);
     let child = clone.firstElementChild;
@@ -27,16 +27,25 @@ function addTodo(todo, name) {
         } else if (e.target.classList.contains("todo-remove")) {
             child.remove();
         }
+        save();
+    });
+    child.querySelector(".todo-text").addEventListener("change", () => {
+        save();
     });
     clone.querySelector(".todo-text").value = todo;
-    if (!name) {
-        name = document.querySelector(".form-name").value;
+    if (time === "") {
+        time = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+        if (!name) {
+            name = document.querySelector(".form-name").value;
+        }
+        if (name) {
+            time += ` - ${name}`;
+        }
     }
-    let formatted = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
-    if (name) {
-        formatted += ` - ${name}`;
+    clone.querySelector(".todo-name").innerText = time;
+    if (done) {
+        child.classList.add("done");
     }
-    clone.querySelector(".todo-name").innerText = formatted;
     document.querySelector(".list").appendChild(clone);
 }
 
@@ -51,6 +60,7 @@ document.querySelector(".form > .form-btn").addEventListener("click", () => {
         }, 300);
     } else {
         addTodo(input.value);
+        save();
     }
 });
 
@@ -65,25 +75,40 @@ document.querySelector(".sorting-date").addEventListener("click", () => {
             .innerText.localeCompare(b.querySelector(".todo-name").innerText)
     );
     document.querySelector(".list").replaceChildren(...children);
+    save();
 });
 
 /**
- * For some reason, this reverses the sorting order
- * every time it's sorted?
+ * Uses regex to select to correct sorting data
  */
 document.querySelector(".sorting-name").addEventListener("click", () => {
     let children = Array.from(document.querySelectorAll(".list > .todo"));
     children = children.sort((a, b) =>
         a
             .querySelector(".todo-name")
-            .innerText.replace(/.*-/m, "") // the culprit
+            .innerText.replace(/.*-/m, "")
             .localeCompare(b.querySelector(".todo-name").innerText.replace(/.*-/m, ""))
     );
     document.querySelector(".list").replaceChildren(...children);
+    save();
 });
 
-addTodo("Go to dance party!", "Bob");
-addTodo("Wake up.", "");
-addTodo("Beep boop", "Futuristic Robot");
-addTodo(":D", "A cat");
-addTodo("Invade Earth", "Alien Invader");
+function save() {
+    let data = [];
+    document.querySelectorAll(".list .todo").forEach((t) => {
+        data.push({
+            text: t.querySelector(".todo-text").value,
+            nameDate: t.querySelector(".todo-name").innerText,
+            done: t.classList.contains("done") ? true : false,
+        });
+    });
+    localStorage.setItem("todos", JSON.stringify(data));
+}
+
+function restore() {
+    for (x of JSON.parse(localStorage.getItem("todos"))) {
+        addTodo(x.text, "", x.nameDate, x.done);
+    }
+}
+
+restore();
