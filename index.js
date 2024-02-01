@@ -93,6 +93,7 @@ document.querySelector(".sorting-name").addEventListener("click", () => {
     save();
 });
 
+
 function save() {
     let data = [];
     document.querySelectorAll(".list .todo").forEach((t) => {
@@ -106,9 +107,16 @@ function save() {
 }
 
 function restore() {
-    for (x of JSON.parse(localStorage.getItem("todos"))) {
-        addTodo(x.text, "", x.nameDate, x.done);
+    try {
+        if (localStorage.getItem("todos")) {
+            for (x of JSON.parse(localStorage.getItem("todos"))) {
+                addTodo(x.text, "", x.nameDate, x.done);
+            }
+        }
+    } catch {
+        console.log("Error restoring todos...")
     }
+
 }
 
 restore();
